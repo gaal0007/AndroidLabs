@@ -2,36 +2,36 @@ package com.example.androidlabs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.Toast;
+import android.widget.EditText;
 
-import com.google.android.material.snackbar.Snackbar;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
+    SharedPreferences prefs = null;
+    SharedPreferences.Editor edit = null;
+    EditText email = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_grid);
+        setContentView(R.layout.activity_login);
 
-        final Button btn = findViewById(R.id.button);
-        btn.setOnClickListener( (click) -> { Toast.makeText(MainActivity.this, getString(R.string.toast_message), Toast.LENGTH_LONG).show(); } );
-        final Switch toggle = findViewById(R.id.toggle);
-        toggle.setChecked(true);
-        toggle.setOnCheckedChangeListener( (CompoundButton cb, boolean b) -> {Snackbar.make(cb, "The switch is now " + b, Snackbar.LENGTH_LONG)
-                                                                                      .setAction("Undo", click -> cb.setChecked(!b))
-                                                                                      .show(); } );
-        final CheckBox checkBox = findViewById(R.id.checkbox);
-        checkBox.setChecked(true);
-        checkBox.setOnCheckedChangeListener( (CompoundButton cb, boolean b) -> {Snackbar.make(cb, "The checkbox is now " + b, Snackbar.LENGTH_LONG)
-                .setAction("Undo", click -> cb.setChecked(!b))
-                .show(); } );
-
+        prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        edit = prefs.edit();
+        String savedEmail = prefs.getString("ReserveName", "");
+        email = findViewById(R.id.emailField);
+        email.setText(savedEmail);
     }
 
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        String enteredEmail = email.getText().toString();
+        edit.putString("ReserveName", enteredEmail);
+    }
 }
