@@ -15,13 +15,17 @@ public class ProfileActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
     static ImageButton mImageButton = null;
+    static Button mButton = null;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Intent goToChatActivity = new Intent( this, ChatRoomActivity.class);
         mImageButton = findViewById(R.id.picButton);
         mImageButton.setOnClickListener( bt -> dispatchTakePictureIntent());
+        mButton = findViewById(R.id.chatButton);
+        mButton.setOnClickListener( bt -> startActivity(goToChatActivity));
         Log.e(ACTIVITY_NAME, "In function:" + " onCreate");
     }
 

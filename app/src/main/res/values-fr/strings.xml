@@ -4,4 +4,7 @@
     <string name="hello_message">Bonjour tout l\'monde!</string>
     <string name="button_text">Je suis un button!</string>
     <string name="toast_message">Ici est more information</string>
+    <string name="send">SENDEZ</string>
+    <string name="type_here">Typez ici</string>
+    <string name="receive">RECEIVEZ</string>
 </resources>
