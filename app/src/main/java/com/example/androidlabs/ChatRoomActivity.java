@@ -1,5 +1,6 @@
 package com.example.androidlabs;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public class ChatRoomActivity extends AppCompatActivity
 {
-    private ArrayList<String> elements = new ArrayList<>();
+    private ArrayList<Message> elements = new ArrayList<>();
     static Button sendButton = null;
     static Button receiveButton = null;
     static EditText msgField = null;
@@ -31,6 +32,28 @@ public class ChatRoomActivity extends AppCompatActivity
         myListView = findViewById(R.id.myListView);
         myListAdapter = new ListAdapter();
         myListView.setAdapter(myListAdapter);
+        myListView.setOnItemLongClickListener((p, b, pos, id) -> {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Do you want to delete this?")
+
+                    //What is the message:
+                    .setMessage("The selected row is: " + pos
+                    + "\nThe database ID is: " + id)
+
+                    //what the Yes button does:
+                    .setPositiveButton("Yes", (click, arg) -> {
+                        elements.remove(pos);
+                        myListAdapter.notifyDataSetChanged();
+                    })
+                    //What the No button does:
+                    .setNegativeButton("No", (click, arg) -> { })
+
+                    //Show the dialog
+                    .create().show();
+
+            return true;
+        });
+
         msgField = findViewById(R.id.messageText);
         sendButton = findViewById(R.id.sendButton);
         sendButton.setOnClickListener(btn -> onSend());
@@ -40,19 +63,27 @@ public class ChatRoomActivity extends AppCompatActivity
 
     public void onSend()
     {
-        //do something
+        String content = msgField.getText().toString();
+        Message newSentMessage = new Message(content, false);
+        elements.add(newSentMessage);
+        myListAdapter.notifyDataSetChanged();
+        msgField.setText("");
     }
 
     public void onReceive()
     {
-        //do something else
+        String content = msgField.getText().toString();
+        Message newReceivedMessage = new Message(content, true);
+        elements.add(newReceivedMessage);
+        myListAdapter.notifyDataSetChanged();
+        msgField.setText("");
     }
 
     private class ListAdapter extends BaseAdapter
     {
         public int getCount(){ return elements.size(); }
 
-        public Object getItem(int position){ return elements.get(position); }
+        public Object getItem(int position){ return elements.get(position).messageText; }
 
         public long getItemId(int position){ return (long)position; }
 
@@ -61,14 +92,25 @@ public class ChatRoomActivity extends AppCompatActivity
             View newView = old;
             LayoutInflater inflater = getLayoutInflater();
 
-            //make a new row
-            if(newView == null)
+            //check whether the message was sent or received
+            TextView tView;
+            if(elements.get(position).incoming == false)
             {
-                newView = inflater.inflate(R.layout.activity_chat_room, parent, false);
+                //make a new row
+                newView = inflater.inflate(R.layout.sent_message_layout, parent, false);
+
+                //set the text for this row as sent
+                tView = newView.findViewById(R.id.sentText);
+            }
+            else
+            {
+                //make a new row
+                newView = inflater.inflate(R.layout.received_message_layout, parent, false);
+
+                //set the text for this row as received
+                tView = newView.findViewById(R.id.receivedText);
             }
 
-            //set the text for this row
-            TextView tView = newView.findViewById(R.id.messageView);
             tView.setText(getItem(position).toString());
 
             return newView;
@@ -82,7 +124,8 @@ public class ChatRoomActivity extends AppCompatActivity
 
         Message(String content, Boolean isIncoming)
         {
-
+            this.messageText = content;
+            this.incoming = isIncoming;
         }
     }
 }
