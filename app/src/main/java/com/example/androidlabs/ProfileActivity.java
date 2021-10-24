@@ -16,16 +16,20 @@ public class ProfileActivity extends AppCompatActivity {
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
     static ImageButton mImageButton = null;
     static Button mButton = null;
+    static Button weatherButton = null;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Intent goToChatActivity = new Intent( this, ChatRoomActivity.class);
+        Intent goToWeatherActivity = new Intent(this, WeatherForcast.class);
         mImageButton = findViewById(R.id.picButton);
         mImageButton.setOnClickListener( bt -> dispatchTakePictureIntent());
         mButton = findViewById(R.id.chatButton);
         mButton.setOnClickListener( bt -> startActivity(goToChatActivity));
+        weatherButton = findViewById(R.id.weatherButton);
+        weatherButton.setOnClickListener( bt -> startActivity(goToWeatherActivity));
         Log.e(ACTIVITY_NAME, "In function:" + " onCreate");
     }
 
