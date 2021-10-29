@@ -2,6 +2,7 @@ package com.example.androidlabs;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,19 +33,45 @@ public class ChatRoomActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
-        Intent goToEmptyActivity = new Intent(this, EmptyActivity.class);
+
+        //Is this running on a tablet?
+        if(findViewById(R.id.frame) == null)
+            isTablet = false;
+        else
+            isTablet = true;
+
         myListView = findViewById(R.id.myListView);
         myListAdapter = new ListAdapter();
         myListView.setAdapter(myListAdapter);
         myListView.setOnItemClickListener((p, b, pos, id) -> {
-            if(isTablet)
-            {
-                DetailsFragment parent = new DetailsFragment();
 
-                parent.getFragmentManager().beginTransaction().replace(R.id.detailsFragment, parent).commit();
+            Bundle dataToPass = new Bundle();
+            if(b.findViewById(R.id.sentText) != null)
+            {
+                TextView sentText = findViewById(R.id.sentText);
+                dataToPass.putString("content", sentText.getText().toString());
+                dataToPass.putLong("id", id);
+                dataToPass.putBoolean("isSent", true);
             }
             else
             {
+                TextView recText = findViewById(R.id.receivedText);
+                dataToPass.putString("content", recText.getText().toString());
+                dataToPass.putLong("id", id);
+                dataToPass.putBoolean("isSent", false);
+            }
+
+            if(isTablet)
+            {
+                DetailsFragment df = new DetailsFragment();
+                df.setArguments(dataToPass);
+
+                FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.frame, df).commit();
+            }
+            else
+            {
+                Intent goToEmptyActivity = new Intent(this, EmptyActivity.class);
                 startActivity(goToEmptyActivity);
             }
         });
@@ -54,10 +81,6 @@ public class ChatRoomActivity extends AppCompatActivity
         sendButton.setOnClickListener(btn -> onSend());
         receiveButton = findViewById(R.id.receiveButton);
         receiveButton.setOnClickListener(btn -> onReceive());
-        if(findViewById(R.id.frame) == null)
-            isTablet = false;
-        else
-            isTablet = true;
 
     }
 

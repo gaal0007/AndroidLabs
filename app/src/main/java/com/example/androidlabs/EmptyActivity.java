@@ -1,8 +1,10 @@
 package com.example.androidlabs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class EmptyActivity extends AppCompatActivity {
 
@@ -11,8 +13,9 @@ public class EmptyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty);
 
-        DetailsFragment parent = new DetailsFragment();
+        DetailsFragment df = new DetailsFragment();
 
-        parent.getFragmentManager().beginTransaction().replace(R.id.detailsFragment, parent).commit();
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.frame, df).commit();
     }
 }
