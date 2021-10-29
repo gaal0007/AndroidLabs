@@ -3,6 +3,7 @@ package com.example.androidlabs;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,35 +25,28 @@ public class ChatRoomActivity extends AppCompatActivity
     static EditText msgField = null;
     static ListView myListView = null;
     static ListAdapter myListAdapter = null;
+    boolean isTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+        Intent goToEmptyActivity = new Intent(this, EmptyActivity.class);
         myListView = findViewById(R.id.myListView);
         myListAdapter = new ListAdapter();
         myListView.setAdapter(myListAdapter);
-        myListView.setOnItemLongClickListener((p, b, pos, id) -> {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("Do you want to delete this?")
+        myListView.setOnItemClickListener((p, b, pos, id) -> {
+            if(isTablet)
+            {
+                DetailsFragment parent = new DetailsFragment();
 
-                    //What is the message:
-                    .setMessage("The selected row is: " + pos
-                    + "\nThe database ID is: " + id)
-
-                    //what the Yes button does:
-                    .setPositiveButton("Yes", (click, arg) -> {
-                        elements.remove(pos);
-                        myListAdapter.notifyDataSetChanged();
-                    })
-                    //What the No button does:
-                    .setNegativeButton("No", (click, arg) -> { })
-
-                    //Show the dialog
-                    .create().show();
-
-            return true;
+                parent.getFragmentManager().beginTransaction().replace(R.id.detailsFragment, parent).commit();
+            }
+            else
+            {
+                startActivity(goToEmptyActivity);
+            }
         });
 
         msgField = findViewById(R.id.messageText);
@@ -59,6 +54,11 @@ public class ChatRoomActivity extends AppCompatActivity
         sendButton.setOnClickListener(btn -> onSend());
         receiveButton = findViewById(R.id.receiveButton);
         receiveButton.setOnClickListener(btn -> onReceive());
+        if(findViewById(R.id.frame) == null)
+            isTablet = false;
+        else
+            isTablet = true;
+
     }
 
     public void onSend()
