@@ -17,6 +17,8 @@ public class ProfileActivity extends AppCompatActivity {
     static ImageButton mImageButton = null;
     static Button mButton = null;
     static Button weatherButton = null;
+    static Button toolbarButton = null;
+    int toolbarActivityResult;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +26,15 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Intent goToChatActivity = new Intent( this, ChatRoomActivity.class);
         Intent goToWeatherActivity = new Intent(this, WeatherForcast.class);
+        Intent goToToolbarActivity = new Intent(this, TestToolbar.class);
         mImageButton = findViewById(R.id.picButton);
         mImageButton.setOnClickListener( bt -> dispatchTakePictureIntent());
         mButton = findViewById(R.id.chatButton);
         mButton.setOnClickListener( bt -> startActivity(goToChatActivity));
         weatherButton = findViewById(R.id.weatherButton);
         weatherButton.setOnClickListener( bt -> startActivity(goToWeatherActivity));
+        toolbarButton = findViewById(R.id.toolbarButton);
+        toolbarButton.setOnClickListener(bt -> startActivityForResult(goToToolbarActivity, toolbarActivityResult));
         Log.e(ACTIVITY_NAME, "In function:" + " onCreate");
     }
 
@@ -79,6 +84,8 @@ public class ProfileActivity extends AppCompatActivity {
             mImageButton.setImageBitmap(imageBitmap);
             Log.e(ACTIVITY_NAME, "In function:" + " onActivityResult");
         }
+        if(resultCode == 500)
+            finish();
     }
 
 
