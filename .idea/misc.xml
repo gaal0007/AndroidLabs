@@ -13,14 +13,20 @@
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/activity_main_linear.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/activity_main_relative.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/activity_navigation.xml" value="0.36666666666666664" />
+        <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/activity_navigation_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/activity_test_toolbar.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/activity_weather_forcast.xml" value="0.36666666666666664" />
+        <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/app_bar_navigation_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/content_navigation_drawer.xml" value="0.36666666666666664" />
+        <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/drawer_header_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/fragment_details.xml" value="0.36666666666666664" />
+        <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/nav_header_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/received_message_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/row_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/layout/sent_message_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/menu/nav_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/menu/navigation_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Semester 3/CST2335 - Mobile Graphical Interface Programming/Android Labs/app/src/main/res/menu/test_menu.xml" value="0.36666666666666664" />
       </map>
     </option>

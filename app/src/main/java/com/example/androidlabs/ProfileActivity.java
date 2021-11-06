@@ -18,7 +18,7 @@ public class ProfileActivity extends AppCompatActivity {
     static Button mButton = null;
     static Button weatherButton = null;
     static Button toolbarButton = null;
-    int toolbarActivityResult;
+    int toolbarActivityResult = 0;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
