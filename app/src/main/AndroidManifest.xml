@@ -16,14 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidLabs">
         <activity
-            android:name=".NavigationDrawer"
-            android:exported="true"
-            android:label="@string/title_activity_navigation_drawer"
-            android:theme="@style/Theme.AndroidLabs.NoActionBar" />
-        <activity
-            android:name=".NavigationActivity"
-            android:exported="true" />
-        <activity
             android:name=".TestToolbar"
             android:exported="true" />
         <activity

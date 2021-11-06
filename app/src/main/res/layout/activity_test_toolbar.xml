@@ -7,38 +7,8 @@
     tools:context=".TestToolbar">
 
     <androidx.appcompat.widget.Toolbar
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        android:id="@+id/toolbar"/>
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:openDrawer="start">
-
-        <!-- Navbar stuff goes here -->
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Title"/>
-
-
-        </LinearLayout>
-
-
-
-        <com.google.android.material.navigation.NavigationView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:menu="@menu/test_menu"
-            android:id="@+id/nav_view" />
-
-    </androidx.drawerlayout.widget.DrawerLayout>
+        android:id="@+id/toolbar"/>
 
 </RelativeLayout>

@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class TestToolbar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class TestToolbar extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +24,6 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
         setContentView(R.layout.activity_test_toolbar);
         Toolbar myToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawerLayout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, myToolbar, R.string.open, R.string.close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -63,24 +56,4 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
         return true;
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item)
-    {
-        Intent goToChatIntent = new Intent(this, ChatRoomActivity.class);
-        Intent goToWeatherIntent = new Intent(this, WeatherForcast.class);
-
-        switch(item.getItemId()){
-            case R.id.chatPageItem:
-                startActivity(goToChatIntent);
-                break;
-            case R.id.weatherPageItem:
-                startActivity(goToWeatherIntent);
-                break;
-            case R.id.loginPageItem:
-                finishActivity(500);
-                break;
-        }
-
-        return true;
-    }
 }
